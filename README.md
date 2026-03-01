@@ -1,104 +1,154 @@
-# AuthSystem — Complete Authentication Platform
+# 🔐 AuthSystem — Secure Authentication Platform
 
-A professional, Google-themed authentication system built with Python Flask.
-
----
-
-## 📁 Project Structure
-
-```
-auth_system/
-├── app.py                    ← Main Flask backend (all routes, email, CSV logic)
-├── requirements.txt          ← Python dependencies
-├── data/                     ← Auto-created CSV data files
-│   ├── users.csv             ← User accounts
-│   ├── logs.csv              ← Activity logs
-│   ├── otps.csv              ← OTP records
-│   └── tokens.csv            ← Reset tokens
-├── templates/
-│   ├── base.html             ← Base HTML layout
-│   ├── login.html            ← Sign In page
-│   ├── signup.html           ← Sign Up page (with CAPTCHA)
-│   ├── otp.html              ← OTP verification (6-box UI)
-│   ├── forgot_password.html  ← Forgot Password
-│   ├── reset_password.html   ← Reset Password
-│   ├── dashboard.html        ← Main Dashboard
-│   └── email/
-│       ├── otp_email.html    ← Professional OTP email
-│       └── reset_email.html  ← Professional reset email
-└── static/
-    ├── css/
-    │   ├── style.css         ← Global styles
-    │   ├── auth.css          ← Auth page styles
-    │   └── dashboard.css     ← Dashboard styles
-    └── js/
-        ├── auth.js           ← Password toggle, alerts
-        ├── otp.js            ← OTP boxes, countdown timer
-        ├── signup.js         ← CAPTCHA refresh, pw strength
-        └── dashboard.js      ← Tabs, auto-logout, chat AI
-```
+> A production-ready, Google-themed authentication system built with Python Flask.  
+> Complete user lifecycle management with OTP email verification, two-factor authentication, auto-logout, and a full activity dashboard — all powered by lightweight CSV storage.
 
 ---
 
-## 🚀 Setup & Run
+## 🌟 Overview
 
-### 1. Install Python (3.9+)
-Make sure Python is installed: `python --version`
-
-### 2. Install dependencies
-```bash
-pip install flask
-```
-
-### 3. Run the app
-```bash
-cd auth_system
-python app.py
-```
-
-### 4. Open in browser
-```
-http://localhost:5000
-```
+**AuthSystem** is a full-featured authentication platform designed for developers who need a clean, professional, and secure login system without the complexity of a heavy framework or database setup. Inspired by Google's design language, it delivers a polished user experience from first sign-up to dashboard — with every action logged and every credential protected.
 
 ---
 
 ## ✨ Features
 
-| Feature | Details |
+| Feature | Description |
 |---|---|
-| Sign Up | First/Last name, Email, Password, DOB, CAPTCHA, Terms |
-| Email OTP | 6-digit code sent via Gmail to verify account |
-| Sign In | Email + Password + optional 2FA OTP |
-| Two-Factor Auth | Toggle on/off in Settings |
-| Forgot Password | Email + DOB verification → reset link + temp password |
-| Auto Logout | Configurable inactivity timer (1–60 min or Off) |
-| Dashboard | Home stats, Ask AI, Activity Logs, Settings |
-| CSV Logging | All actions logged to data/logs.csv |
-| Professional Emails | Google-style HTML emails for OTP and reset |
+| 📝 **Sign Up** | Full registration with first/last name, email, password, date of birth, visual CAPTCHA, and terms agreement |
+| 📧 **Email OTP Verification** | 6-digit code sent via Gmail to verify new accounts with a 60-second resend timer |
+| 🔐 **Secure Sign In** | Email + password authentication with optional two-factor OTP at every login |
+| 🛡️ **Two-Factor Authentication** | Toggle 2FA on/off per account from the Settings panel |
+| 🔑 **Forgot Password** | Identity verified via email + date of birth → temporary password + secure reset link sent to inbox |
+| ⏱️ **Auto Logout** | Configurable inactivity timer (1–60 min, or off) with a 30-second warning modal |
+| 📊 **Activity Dashboard** | Live stats, recent activity feed, full logs table, and account overview |
+| 🤖 **AI Assistant** | Built-in chat assistant for account help and navigation guidance |
+| 📬 **Professional Emails** | Google-styled HTML emails for OTP and password reset |
+| 📁 **CSV Storage** | Zero database setup — all data stored locally in clean CSV files |
+| 🔒 **Secure Passwords** | SHA-256 hashed, never stored in plain text |
+| 📋 **Full Audit Logs** | Every login, OTP attempt, reset, and settings change logged with timestamp and IP |
 
 ---
 
-## ⚙️ Configuration
-
-Email credentials are in `app.py`:
-```python
-EMAIL_ADDRESS = 'lanser2676@gmail.com'
-EMAIL_PASSWORD = 'qfwl duhk zwyw lgxe'
+## 📁 Project Structure
 ```
-
-To change the secret key (recommended for production):
-```python
-app.secret_key = 'your-new-secret-key'
+auth_system/
+├── app.py                        ← Main Flask app (routes, email, CSV logic)
+├── requirements.txt              ← Python dependencies
+├── .env                          ← 🔒 Your credentials (gitignored)
+├── .env.example                  ← Template for credentials
+├── .gitignore                    ← Protects secrets and data
+│
+├── data/                         ← Auto-created on first run (gitignored)
+│   ├── users.csv
+│   ├── logs.csv
+│   ├── otps.csv
+│   └── tokens.csv
+│
+├── templates/
+│   ├── base.html
+│   ├── login.html
+│   ├── signup.html
+│   ├── otp.html
+│   ├── forgot_password.html
+│   ├── reset_password.html
+│   ├── dashboard.html
+│   └── email/
+│       ├── otp_email.html
+│       └── reset_email.html
+│
+└── static/
+    ├── css/
+    │   ├── style.css
+    │   ├── auth.css
+    │   └── dashboard.css
+    └── js/
+        ├── auth.js
+        ├── otp.js
+        ├── signup.js
+        └── dashboard.js
 ```
 
 ---
 
-## 📊 CSV Data Files
+## 🚀 Quick Start
 
-All data is stored in `data/` as CSV:
+### 1. Clone the repository
+```bash
+git clone https://github.com/faizandev1/Fask-auth-system.git
+cd Fask-auth-system
+```
 
-- **users.csv** — id, first_name, last_name, email, password_hash, dob, created_at, is_verified, two_fa_enabled, auto_logout_minutes
-- **logs.csv** — timestamp, email, action, ip, status, details
-- **otps.csv** — email, otp, created_at, expires_at, used
-- **tokens.csv** — token, email, type, created_at, expires_at, used
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure your credentials
+```bash
+cp .env.example .env
+```
+Open `.env` and fill in your details:
+```env
+EMAIL_ADDRESS=your_email@gmail.com
+EMAIL_PASSWORD=xxxx xxxx xxxx xxxx
+SECRET_KEY=your-random-secret-key
+```
+
+> **Get a Gmail App Password:**  
+> [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) → Generate → paste into `.env`
+
+### 4. Run the app
+```bash
+python app.py
+```
+
+### 5. Open in browser
+```
+http://localhost:5000
+```
+
+No database. No migrations. Just run and go.
+
+---
+
+## ⚙️ Environment Variables
+
+| Variable | Description |
+|---|---|
+| `EMAIL_ADDRESS` | Gmail address used to send emails |
+| `EMAIL_PASSWORD` | Gmail App Password (16-char key) |
+| `SECRET_KEY` | Flask session secret — use a long random string |
+
+---
+
+## 🔒 Security Notes
+
+- Passwords are **SHA-256 hashed** — never stored in plain text
+- OTP codes **expire in 10 minutes**
+- Reset tokens **expire in 1 hour** and are single-use
+- `.env` and `data/*.csv` are fully **excluded from Git**
+- CAPTCHA on signup prevents bot registrations
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Python 3.9+ · Flask 3.x |
+| Frontend | HTML5 · CSS3 · Vanilla JavaScript |
+| Fonts | DM Sans · DM Serif Display |
+| Email | SMTP via Gmail |
+| Storage | CSV files |
+| Config | python-dotenv |
+
+---
+
+## 📜 License
+
+MIT License — free to use, modify, and distribute.
+
+---
+
+<p align="center">Built with using Python & Flask</p>
