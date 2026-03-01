@@ -1,3 +1,9 @@
+
+<img width="1215" height="860" alt="footer" src="https://github.com/user-attachments/assets/4ee833d5-ea28-46f3-90a2-a3ca5a2aad9d" />
+<img width="1224" height="862" alt="Capture 6" src="https://github.com/user-attachments/assets/39a3d0f6-d84d-45f1-9ef3-4034e5e1e496" />
+<img width="1277" height="867" alt="Capture4" src="https://github.com/user-attachments/assets/bd0722e0-543b-4393-a505-1d27b7b3d40d" />
+<img width="1281" height="826" alt="Capture 2" src="https://github.com/user-attachments/assets/c4b98393-daf0-4bd7-ba1f-7d15235d99ee" />
+<img width="1276" height="861" alt="Capture" src="https://github.com/user-attachments/assets/83ef28de-1218-47fa-a243-da1d1bc886e5" />
 # 🔐 AuthSystem — Secure Authentication Platform
 
 > A production-ready, Google-themed authentication system built with Python Flask.  
@@ -29,7 +35,6 @@
 | 📋 **Full Audit Logs** | Every login, OTP attempt, reset, and settings change logged with timestamp and IP |
 
 ---
-
 ## 📁 Project Structure
 ```
 auth_system/
@@ -147,7 +152,7 @@ No database. No migrations. Just run and go.
 
 ## 📜 License
 
-MIT License — free to use, modify, and distribute.
+MIT License  
 
 ---
 
