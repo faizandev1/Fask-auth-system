@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Verify OTP — AuthSystem{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static',filename='css/auth.css') }}">{% endblock %}
+
+{% block content %}
+<div class="auth-bg">
+  <div class="auth-bg-shape s1"></div>
+  <div class="auth-bg-shape s2"></div>
+  <div class="auth-bg-shape s3"></div>
+</div>
+
+<div class="auth-wrapper">
+  <div class="auth-card animate-in">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M14 2L3 8v12l11 6 11-6V8L14 2z" fill="#1a73e8"/>
+          <path d="M14 2L3 8l11 6 11-6-11-6z" fill="#4285f4" opacity=".7"/>
+          <path d="M3 8v12l11 6V14L3 8z" fill="#1a73e8" opacity=".8"/>
+        </svg>
+      </div>
+      <span class="brand-name">AuthSystem</span>
+    </div>
+
+    <div class="otp-icon">
+      <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+        <rect width="48" height="48" rx="24" fill="#e8f0fe"/>
+        <path d="M34 16H14a2 2 0 00-2 2v12a2 2 0 002 2h20a2 2 0 002-2V18a2 2 0 00-2-2z" stroke="#1a73e8" stroke-width="2"/>
+        <path d="M32 16v-2a2 2 0 00-2-2H18a2 2 0 00-2 2v2" stroke="#1a73e8" stroke-width="2"/>
+        <circle cx="24" cy="24" r="3" fill="#1a73e8"/>
+      </svg>
+    </div>
+
+    <h1 class="auth-heading">Check your email</h1>
+    <p class="auth-sub">We sent a 6-digit verification code to<br><strong>{{ email }}</strong></p>
+
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% for cat, msg in msgs %}
+        <div class="alert alert-{{ cat }}">
+          <span class="alert-icon">{% if cat=='error' %}✕{% elif cat=='success' %}✓{% else %}ℹ{% endif %}</span>
+          {{ msg }}
+        </div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="/verify-otp" id="otpForm">
+      <div class="otp-boxes">
+        {% for i in range(1, 7) %}
+        <input type="text" name="otp{{ i }}" class="otp-box" maxlength="1"
+               inputmode="numeric" pattern="[0-9]" autocomplete="off" required>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="btn-primary btn-full" id="verifyBtn" disabled>
+        <span>Verify Code</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="otp-timer-wrap">
+      <span id="timerText">Resend code in <strong id="countdown">60</strong>s</span>
+      <button id="resendBtn" class="btn-ghost" style="display:none">Resend Code</button>
+    </div>
+
+    <a href="/login" class="btn-secondary btn-full" style="margin-top:12px">← Back to Sign In</a>
+  </div>
+  <p class="auth-footer">© 2024 AuthSystem · <a href="#">Privacy</a></p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static',filename='js/otp.js') }}"></script>
+{% endblock %}

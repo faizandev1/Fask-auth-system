@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reset Your Password</title>
+</head>
+<body style="margin:0;padding:0;background:#f1f3f4;font-family:'Google Sans',Roboto,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f3f4;padding:40px 0;">
+  <tr><td align="center">
+    <table width="520" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.08);">
+
+      <tr>
+        <td style="background:linear-gradient(135deg,#1a73e8 0%,#4285f4 100%);padding:36px 48px;text-align:center;">
+          <h1 style="color:#ffffff;margin:0;font-size:24px;font-weight:600;">AuthSystem</h1>
+          <p style="color:rgba(255,255,255,0.85);margin:6px 0 0;font-size:14px;">Password Reset Request</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding:40px 48px;">
+          <p style="color:#3c4043;font-size:16px;margin:0 0 8px;">Hi {% if name %}{{ name }}{% else %}there{% endif %},</p>
+          <p style="color:#5f6368;font-size:15px;line-height:1.6;margin:0 0 24px;">
+            We received a request to reset your password. Use the details below to set a new password. This link expires in <strong>1 hour</strong>.
+          </p>
+
+          <!-- Temp Password -->
+          <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+            <tr>
+              <td style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:20px 24px;">
+                <p style="margin:0 0 6px;color:#166534;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Temporary Password</p>
+                <p style="margin:0;color:#15803d;font-size:22px;font-weight:700;letter-spacing:2px;font-family:'Courier New',monospace;">{{ temp_pw }}</p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Reset Button -->
+          <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+            <tr>
+              <td align="center">
+                <a href="{{ link }}" style="display:inline-block;background:#1a73e8;color:#ffffff;text-decoration:none;font-size:15px;font-weight:600;padding:14px 40px;border-radius:8px;letter-spacing:0.3px;">
+                  Reset My Password →
+                </a>
+              </td>
+            </tr>
+          </table>
+
+          <p style="color:#9aa0a6;font-size:13px;margin:0 0 8px;">Or copy this link into your browser:</p>
+          <p style="background:#f8f9fa;border-radius:6px;padding:10px 14px;font-size:12px;color:#5f6368;word-break:break-all;margin:0;">{{ link }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="background:#f8f9fa;padding:24px 48px;border-top:1px solid #e8eaed;">
+          <p style="color:#9aa0a6;font-size:12px;margin:0;text-align:center;line-height:1.6;">
+            If you didn't request a password reset, please ignore this email or contact support.<br>
+            © {{ year }} AuthSystem. All rights reserved.
+          </p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>
